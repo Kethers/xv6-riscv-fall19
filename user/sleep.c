@@ -2,7 +2,6 @@
 #include "kernel/stat.h"
 #include "user/user.h"
 #include "kernel/fs.h"
-//#include "kernel/proc.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +9,7 @@ int main(int argc, char *argv[])
     {
         fprintf(2, "error message\n");
     }
-    else 
+    else
     {
         int time = atoi(argv[1]);
         if (time < 0)

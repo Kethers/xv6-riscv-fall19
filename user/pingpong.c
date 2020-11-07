@@ -2,11 +2,10 @@
 #include "kernel/stat.h"
 #include "user/user.h"
 #include "kernel/fs.h"
-//#include "kernel/proc.h"
 
 int main(int argc, char *argv[])
 {
-    int parent_fd[2], child_fd[2];  //[0] output, [1] input
+    int parent_fd[2], child_fd[2]; //[0] output, [1] input
     char buf[64];
 
     pipe(parent_fd);
