@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
             int prime, this_prime = 0;
             close(fd[W]);
             cnt = -1;
+            //读的时候如果父进程还没有写，就会阻塞
             while (read(fd[R], &prime, sizeof(prime)) != 0)
             {
                 if (cnt == -1) //设置当前进程的素数，筛选掉能被当前素数整除的数
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    if (prime % this_prime != 0)
+                    if (prime % this_prime != 0) //cnt从0开始，把筛选掉的数放入number中
                     {
                         numbers[cnt++] = prime;
                     }
@@ -51,7 +52,7 @@ int main(int argc, char *argv[])
                 write(fd[W], &numbers[i], sizeof(numbers[0]));
             }
             close(fd[W]);
-            wait();
+            wait(); //保证子进程先结束，父进程才结束
             break;
         }
     }
